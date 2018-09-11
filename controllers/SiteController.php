@@ -104,7 +104,7 @@ class SiteController extends Controller
      */
     public function actionBlogSlug($title)
     {
-
+        //sidebar recommanded post
         $recommands = Post::find()
         ->where(['publish_status' => '1'])
         ->andWhere(["<=",'publish_date',date('Y-m-d')])
@@ -112,14 +112,18 @@ class SiteController extends Controller
         ->limit(3)
         ->all();
 
+        //single post 
         $post = $this->findModelBySlug($title);
+        $post->addVisit();
 
+        //get All tag from single post
         $idTags = Yii::$app->db->createCommand("SELECT * FROM post_to_tag WHERE id_post = $post->id")->queryAll();
 
         foreach($idTags as $id){
             $tags[] = Tag::findOne($id['id_tag'])->nama;
         }
         
+        //render page partial
         return $this->renderPartial('blog-detail',[
             'profile' => $this->profile,
             'setting' => $this->setting,

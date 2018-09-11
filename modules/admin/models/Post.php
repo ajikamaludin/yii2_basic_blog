@@ -129,6 +129,17 @@ class Post extends ActiveRecord
         parent::afterSave($insert, $changedAttributes);
     }
 
+    public function addVisit()
+    {
+        foreach($this->getTags()->all() as $tag){
+            $tags[] = $tag->nama;
+        }
+        $this->tag = $tags;
+
+        $this->visit = $this->visit + 1;
+        return $this->save(false);
+    }
+
     public function getTags()
     {
         return $this->hasMany(Tag::className(), ['id' => 'id_tag'])
