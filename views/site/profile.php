@@ -16,20 +16,20 @@ use yii\helpers\Url;
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CVarela+Round" rel="stylesheet">
 
 	<!-- Bootstrap -->
-	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+	<link type="text/css" rel="stylesheet" href="<?= Url::to(['css/bootstrap.min.css'])?>" />
 
 	<!-- Owl Carousel -->
-	<link type="text/css" rel="stylesheet" href="css/owl.carousel.css" />
-	<link type="text/css" rel="stylesheet" href="css/owl.theme.default.css" />
+	<link type="text/css" rel="stylesheet" href="<?= Url::to(['css/owl.carousel.css'])?>" />
+	<link type="text/css" rel="stylesheet" href="<?= Url::to(['css/owl.theme.default.css'])?>" />
 
 	<!-- Magnific Popup -->
-	<link type="text/css" rel="stylesheet" href="css/magnific-popup.css" />
+	<link type="text/css" rel="stylesheet" href="<?= Url::to(['css/magnific-popup.css'])?>" />
 
 	<!-- Font Awesome Icon -->
-	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="<?= Url::to(['css/font-awesome.min.css'])?>">
 
 	<!-- Custom stlylesheet -->
-	<link type="text/css" rel="stylesheet" href="css/style-udin.css" />
+	<link type="text/css" rel="stylesheet" href="<?= Url::to(['css/style-udin.css'])?>" />
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -49,9 +49,9 @@ use yii\helpers\Url;
 				<div class="navbar-header">
 					<!-- Logo -->
 					<div class="navbar-brand" style="padding-left: 20px;">
-						<a href="/">
-							<img class="logo" src="<?= $setting->navbar_logo ?>" alt="endarcore">
-							<img class="logo-alt" src="<?= $setting->navbar_logo ?>" alt="endarcore">
+						<a href=".">
+							<img class="logo" src="<?= Url::to([$setting->navbar_logo]) ?>" alt="endarcore">
+							<img class="logo-alt" src="<?= Url::to([$setting->navbar_logo]) ?>" alt="endarcore">
 						</a>
 					</div>
 					<!-- /Logo -->
@@ -65,13 +65,13 @@ use yii\helpers\Url;
 
 				<!--  Main navigation  -->
 				<ul class="main-nav nav navbar-nav navbar-right">
-					<li><a href="<?= Url::to('index') ?>/#home">Home</a></li>
-					<li class="active"><a href="/#about">About</a></li>
-					<li><a href="/#blog">Blog</a></li>
-					<li><a href="/#project">Project</a></li>
-					<li class="has-dropdown"><a href="/#contact">Contact</a>
+					<li><a href="<?= Url::to(['#home']) ?>">Home</a></li>
+					<li class="active"><a href="#">About</a></li>
+					<li><a href="<?= Url::to(['#blog']) ?>">Blog</a></li>
+					<li class=""><a href="<?= Url::to(['projects']) ?>">Project</a></li>
+					<li class="has-dropdown"><a href="<?= Url::to(['#contact']) ?>">Contact</a>
 						<ul class="dropdown">
-							<li><a href="/#contact">Download CV</a></li>
+							<li><a href="<?= Url::to(['#contact']) ?>">Download</a></li>
 						</ul>
 					</li>
 					<!-- <li><a href="#contact">Contact</a></li> -->
@@ -98,7 +98,7 @@ use yii\helpers\Url;
                 
                 <!-- profile content -->
 					<div style="border-radius: 50%;overflow: hidden; width: 300px; height: 300px; margin: 0 auto; margin-bottom: 30px;">
-						<img src="<?= $profile->foto_file ?>" height="100%">
+						<img src="<?= Url::to([$profile->foto_file]) ?>" height="100%">
 					</div>
 							<!-- /profile content -->
 						<!-- Row -->
@@ -125,7 +125,6 @@ use yii\helpers\Url;
 										<?= $profile->long_desc ?>
 									</p>
 								</div>
-		
 							</div>
 
                         </div>
@@ -168,7 +167,7 @@ use yii\helpers\Url;
 
 					<!-- footer logo -->
 					<div class="footer-logo" >
-							<a href="/"><img class="img-responsive" src="<?= $setting->footer_logo ?>" alt="endarcore" style="margin: 0 auto;"></a>				
+						<a href="index.html"><img class="img-responsive" src="<?= Url::to([$setting->footer_logo]) ?>" alt="endarcore" style="margin: 0 auto;"></a>						
 					</div>
 					<!-- /footer logo -->
 					<!-- footer copyright -->
@@ -205,11 +204,11 @@ use yii\helpers\Url;
 	<!-- /Preloader -->
 
 	<!-- jQuery Plugins -->
-	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/owl.carousel.min.js"></script>
-	<script type="text/javascript" src="js/jquery.magnific-popup.js"></script>
-	<script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" src="<?= Url::to(['js/jquery.min.js']) ?>"></script>
+	<script type="text/javascript" src="<?= Url::to(['js/bootstrap.min.js']) ?>"></script>
+	<script type="text/javascript" src="<?= Url::to(['js/owl.carousel.min.js']) ?>"></script>
+	<script type="text/javascript" src="<?= Url::to(['js/jquery.magnific-popup.js']) ?>"></script>
+	<script type="text/javascript" src="<?= Url::to(['js/main.js']) ?>"></script>
 
 </body>
 

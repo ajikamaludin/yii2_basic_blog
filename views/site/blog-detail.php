@@ -1,3 +1,6 @@
+<?php
+use yii\helpers\Url;
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,21 +16,21 @@
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CVarela+Round" rel="stylesheet">
 
 	<!-- Bootstrap -->
-	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" />
+	<link type="text/css" rel="stylesheet" href="<?= Url::to(['css/bootstrap.min.css'])?>" />
 
 	<!-- Owl Carousel -->
-	<link type="text/css" rel="stylesheet" href="/css/owl.carousel.css" />
-	<link type="text/css" rel="stylesheet" href="/css/owl.theme.default.css" />
+	<link type="text/css" rel="stylesheet" href="<?= Url::to(['css/owl.carousel.css'])?>" />
+	<link type="text/css" rel="stylesheet" href="<?= Url::to(['css/owl.theme.default.css'])?>" />
 
 	<!-- Magnific Popup -->
-	<link type="text/css" rel="stylesheet" href="/css/magnific-popup.css" />
+	<link type="text/css" rel="stylesheet" href="<?= Url::to(['css/magnific-popup.css'])?>" />
 
 	<!-- Font Awesome Icon -->
-	<link rel="stylesheet" href="/css/font-awesome.min.css">
+	<link rel="stylesheet" href="<?= Url::to(['css/font-awesome.min.css'])?>">
 
 	<!-- Custom stlylesheet -->
-	<link type="text/css" rel="stylesheet" href="/css/style-aji.css" />
-	<link type="text/css" rel="stylesheet" href="/css/blog.css" />
+	<link type="text/css" rel="stylesheet" href="<?= Url::to(['css/style-aji.css'])?>" />
+	<link type="text/css" rel="stylesheet" href="<?= Url::to(['css/blog.css'])?>" />
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -46,9 +49,9 @@
 			<div class="navbar-header">
 				<!-- Logo -->
 				<div class="navbar-brand">
-					<a href="/">
-						<img class="logo" src="/<?= $setting->navbar_logo ?>" alt="endarcore">
-						<img class="logo-alt" src="/<?= $setting->navbar_logo ?>" alt="endarcore">
+					<a href=".">
+						<img class="logo" src="<?= Url::to([$setting->navbar_logo]) ?>" alt="endarcore">
+						<img class="logo-alt" src="<?= Url::to([$setting->navbar_logo]) ?>" alt="endarcore">
 					</a>
 				</div>
 				<!-- /Logo -->
@@ -62,13 +65,13 @@
 
 			<!--  Main navigation  -->
 			<ul class="main-nav nav navbar-nav navbar-right">
-				<li class=""><a href="/#home">Home</a></li>
-				<li class=""><a href="/#about">About</a></li>
-				<li class="active"><a href="/blogs">Blog</a></li>
-				<li class=""><a href="/projects">Project</a></li>
-				<li class="has-dropdown"><a href="/#contact">Contact</a>
+				<li><a href="<?= Url::to(['#home']) ?>">Home</a></li>
+				<li><a href="<?= Url::to(['#about']) ?>">About</a></li>
+				<li class="active"><a href="#blog">Blog</a></li>
+				<li class=""><a href="<?= Url::to(['projects']) ?>">Project</a></li>
+				<li class="has-dropdown"><a href="<?= Url::to(['#contact']) ?>">Contact</a>
 					<ul class="dropdown">
-						<li class=""><a href="/#contact">Download CV</a></li>
+						<li><a href="<?= Url::to(['#contact']) ?>">Download</a></li>
 					</ul>
 				</li>
 				<!-- <li><a href="#contact">Contact</a></li> -->
@@ -88,7 +91,7 @@
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 blog_single">
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 								<div>
-									<img class="img-force" src="http://di-demo.owl-themes.net/images/blogpost/col_2_9.jpg" alt="blog_1">
+									<img class="img-force" src="<?= Url::to([$post->gambar]) ?>" alt="blog_1">
 								</div>
 							</div>
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -107,7 +110,7 @@
 									<p style="font-weight:bold;font-size: 16px;" >Categories : </p>
 									<div class="tag-list">
 										<?php foreach($tags as $t): ?>
-										<p><?= $t ?></p>
+										<p onclick="location.href='<?= Url::to(['blogs?tag='.$t]) ?>'"><?= $t ?></p>
 										<?php endforeach; ?>
 									</div>
 									<!-- <div class="comment">
@@ -159,7 +162,7 @@
 							<p>About Author</p>
 						</div>
 						<div class="author-picture">
-							<img src="/<?= $profile->foto_file ?>" alt="">
+							<img src="<?= Url::to([$profile->foto_file]) ?>" alt="">
 						</div>
 						<div class="author-name">
 							<p><?= $profile->nama ?></p>
@@ -180,7 +183,7 @@
 						</div>
 						<div class="blog-list">
 							<?php foreach($recommands as $r): ?>
-							<a href="/blog/<?= $r->slug ?>" ><p><?= $r->judul ?></p></a>
+							<a href="<?= Url::to(['blog/'.$r->slug]) ?>" ><p><?= $r->judul ?></p></a>
 							<?php endforeach; ?>
 						</div>
 					</div>
@@ -201,7 +204,7 @@
 
 					<!-- footer logo -->
 					<div class="footer-logo">
-							<a href="/"><img class="img-responsive" src="/<?= $setting->navbar_logo ?>"  alt="endarcore" style="margin: 0 auto;"></a>				
+						<a href="."><img class="img-responsive" src="<?= Url::to([$setting->footer_logo]) ?>" alt="endarcore" style="margin: 0 auto;"></a>
 					</div>
 					<!-- /footer logo -->
 					<!-- footer copyright -->
@@ -235,11 +238,11 @@
 				<span></span>
 			</div>
 		</div>
-		<!-- jQuery Plugins -->
-		<script type="text/javascript" src="/js/jquery.min.js"></script>
-		<script type="text/javascript" src="/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="/js/owl.carousel.min.js"></script>
-		<script type="text/javascript" src="/js/jquery.magnific-popup.js"></script>
-		<script type="text/javascript" src="/js/main.js"></script>
+	<!-- jQuery Plugins -->
+	<script type="text/javascript" src="<?= Url::to(['js/jquery.min.js']) ?>"></script>
+	<script type="text/javascript" src="<?= Url::to(['js/bootstrap.min.js']) ?>"></script>
+	<script type="text/javascript" src="<?= Url::to(['js/owl.carousel.min.js']) ?>"></script>
+	<script type="text/javascript" src="<?= Url::to(['js/jquery.magnific-popup.js']) ?>"></script>
+	<script type="text/javascript" src="<?= Url::to(['js/main.js']) ?>"></script>
 </body>
 </html>

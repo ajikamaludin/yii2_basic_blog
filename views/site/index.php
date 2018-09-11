@@ -1,6 +1,8 @@
 <?php
 use yii\helpers\Inflector as flack;
 use yii\helpers\Html;
+use yii\helpers\Url;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,20 +19,20 @@ use yii\helpers\Html;
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CVarela+Round" rel="stylesheet">
 
 	<!-- Bootstrap -->
-	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+	<link type="text/css" rel="stylesheet" href="<?= Url::to(['css/bootstrap.min.css'])?>" />
 
 	<!-- Owl Carousel -->
-	<link type="text/css" rel="stylesheet" href="css/owl.carousel.css" />
-	<link type="text/css" rel="stylesheet" href="css/owl.theme.default.css" />
+	<link type="text/css" rel="stylesheet" href="<?= Url::to(['css/owl.carousel.css'])?>" />
+	<link type="text/css" rel="stylesheet" href="<?= Url::to(['css/owl.theme.default.css'])?>" />
 
 	<!-- Magnific Popup -->
-	<link type="text/css" rel="stylesheet" href="css/magnific-popup.css" />
+	<link type="text/css" rel="stylesheet" href="<?= Url::to(['css/magnific-popup.css'])?>" />
 
 	<!-- Font Awesome Icon -->
-	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="<?= Url::to(['css/font-awesome.min.css'])?>">
 
 	<!-- Custom stlylesheet -->
-	<link type="text/css" rel="stylesheet" href="css/style.css" />
+	<link type="text/css" rel="stylesheet" href="<?= Url::to(['css/style.css'])?>" />
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -44,7 +46,7 @@ use yii\helpers\Html;
 	<!-- Header -->
 	<header id="home">
 		<!-- Background Image -->
-		<div class="bg-img" style="background-image: url('./img/background1.jpg');">
+		<div class="bg-img" style="background-image: url(<?= Url::to(['img/background1.jpg'])?>);">
 			<div class="overlay"></div>
 		</div>
 		<!-- /Background Image -->
@@ -57,8 +59,8 @@ use yii\helpers\Html;
 					<!-- Logo -->
 					<div class="navbar-brand">
 						<a href="index.html">
-							<img class="logo" src="<?= $setting->navbar_logo ?>" alt="endarcore">
-							<img class="logo-alt" src="<?= $setting->navbar_logo ?>" alt="endarcore">
+							<img class="logo" src="<?= Url::to([$setting->navbar_logo]) ?>" alt="endarcore">
+							<img class="logo-alt" src="<?= Url::to([$setting->navbar_logo]) ?>" alt="endarcore">
 						</a>
 					</div>
 					<!-- /Logo -->
@@ -72,13 +74,13 @@ use yii\helpers\Html;
 
 				<!--  Main navigation  -->
 				<ul class="main-nav nav navbar-nav navbar-right">
-					<li><a href="#home">Home</a></li>
-					<li><a href="#about">About</a></li>
-					<li><a href="#blog">Blog</a></li>
-					<li><a href="#project" onclick="location.href='/projects'">Project</a></li>
-					<li class="has-dropdown"><a href="/#contact">Contact</a>
+					<li><a href="<?= Url::to('#home') ?>">Home</a></li>
+					<li><a href="<?= Url::to('#about') ?>">About</a></li>
+					<li><a href="<?= Url::to('#blog') ?>">Blog</a></li>
+					<li><a href="#project" onclick="location.href='<?= Url::to(['projects']) ?>'">Project</a></li>
+					<li class="has-dropdown"><a href="<?= Url::to('#contact') ?>">Contact</a>
 						<ul class="dropdown">
-							<li><a href="#contact">Download</a></li>
+							<li><a href="<?= Url::to('#contact') ?>">Download</a></li>
 						</ul>
 					</li>
 					<!-- <li><a href="#contact">Contact</a></li> -->
@@ -131,7 +133,7 @@ use yii\helpers\Html;
 							<!-- profile content -->
 							<div class="col-md-5">
 								<div style="border-radius: 50%;overflow: hidden; width: 250px; height: 250px; margin: 0 auto">
-									<img src="<?= $profile->foto_file ?>" height="100%">
+									<img src="<?= Url::to([$profile->foto_file]) ?>" height="100%">
 								</div>
 								
 								<h4 style="text-align: center; padding-top: 5%;"><?= $profile->nama ?></h4>
@@ -180,7 +182,7 @@ use yii\helpers\Html;
 				<div class="col-md-4">
 					<div class="blog">
 						<div class="blog-img">
-							<a href="blog/<?= ($post->slug) ?>"><img class="img-responsive" src="<?= $post->gambar ?>" alt=""></a>
+							<a href="<?= Url::to(["blog/$post->slug"]) ?>"><img class="img-responsive" src="<?= Url::to([$post->gambar]) ?>" alt=""></a>
 						</div>
 						<div class="blog-content">
 							<ul class="blog-meta">
@@ -188,7 +190,7 @@ use yii\helpers\Html;
 								<li class="date"><i class="fa fa-clock-o"></i><?= Yii::$app->formatter->asDate($post->updated_at, 'long') ?></li>
 								<li class="date"><i class="fa fa-comments"></i>0</li>
 							</ul>
-							<a href="blog/<?= ($post->slug) ?>"><h3 class="blog-title"><?= $post->judul ?></h3></a>
+							<a href="<?= Url::to(["blog/$post->slug"]) ?>"><h3 class="blog-title"><?= $post->judul ?></h3></a>
 
 							<?= Html::tag('p', (substr($post->body,0,300)), ['class' => 'content']) ?>
 							
@@ -202,7 +204,7 @@ use yii\helpers\Html;
 			</div>
 			<!-- /Row -->
 			<div style="text-align: center; margin-top: 5%;">
-				<a href="/blogs"><button class="main-btn" style="color: black;">View More</button></a>
+				<a href="<?= Url::to(['blogs']) ?>"><button class="main-btn" style="color: black;">View More</button></a>
 			</div>
 			
 		</div>
@@ -232,7 +234,7 @@ use yii\helpers\Html;
 					<div style="text-align: center;">
 						<div id="about-slider" class="owl-carousel owl-theme">
 							<?php foreach($projects as $project): ?>
-							<img class="img-responsive" src="<?= $project->gambar_file ?>" alt="">
+							<img class="img-responsive" src="<?= Url::to([$project->gambar_file]) ?>" alt="">
 							<?php endforeach;?>
 						</div>
 					</div>
@@ -244,7 +246,7 @@ use yii\helpers\Html;
 			</div>
 			<!-- /Row -->
 			<div style="text-align: center; margin-top: 5%;">
-				<a href="/projects"><button class="main-btn" style="color: #171719">View More</button></a>
+				<a href="<?= Url::to(['projects']) ?>"><button class="main-btn" style="color: #171719">View More</button></a>
 			</div>
 		</div>
 		<!-- /Container -->
@@ -292,8 +294,8 @@ use yii\helpers\Html;
 				<!-- contact -->
 				<div class="col-sm-4">
 					<div class="contact">
-						<a href="<?= $profile->cv_file ?>"><i class="fa fa-download" style="color: #cacace;"></i></a>
-						<a href="<?= $profile->cv_file ?>"><h3>Download</h3></a>
+						<a href="<?= Url::to([$profile->cv_file]) ?>"><i class="fa fa-download" style="color: #cacace;"></i></a>
+						<a href="<?= Url::to([$profile->cv_file]) ?>"><h3>Download</h3></a>
 					</div>
 				</div>
 				<!-- /contact -->
@@ -333,7 +335,7 @@ use yii\helpers\Html;
 
 					<!-- footer logo -->
 					<div class="footer-logo" >
-							<a href="index.html"><img class="img-responsive" src="<?= $setting->footer_logo ?>" alt="endarcore" style="margin: 0 auto;"></a>				
+							<a href="index.html"><img class="img-responsive" src="<?= Url::to([$setting->footer_logo]) ?>" alt="endarcore" style="margin: 0 auto;"></a>
 					</div>
 					<!-- /footer logo -->
 					<!-- footer copyright -->
@@ -370,11 +372,11 @@ use yii\helpers\Html;
 	<!-- /Preloader -->
 
 	<!-- jQuery Plugins -->
-	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/owl.carousel.min.js"></script>
-	<script type="text/javascript" src="js/jquery.magnific-popup.js"></script>
-	<script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" src="<?= Url::to(['js/jquery.min.js']) ?>"></script>
+	<script type="text/javascript" src="<?= Url::to(['js/bootstrap.min.js']) ?>"></script>
+	<script type="text/javascript" src="<?= Url::to(['js/owl.carousel.min.js']) ?>"></script>
+	<script type="text/javascript" src="<?= Url::to(['js/jquery.magnific-popup.js']) ?>"></script>
+	<script type="text/javascript" src="<?= Url::to(['js/main.js']) ?>"></script>
 
 	<script type="text/javascript">
 		// Select all links with hashes

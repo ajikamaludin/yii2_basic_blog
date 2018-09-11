@@ -54,24 +54,68 @@ class SiteController extends Controller
      *
      * @return void
      */
-    public function actionBlogs($q = null)
+    public function actionBlogs($q = null, $tag = null)
     {
         $message = [];
+        $posts = [];
+        $pagination = null;
         $tags = Tag::find()->all();
+
+        if($tag != null && $q != null){
+            return $this->redirect(['site/404']);
+        }
+
+        if($tag != null){
+            $tag = Tag::findOne(['nama' => $tag]);
+            if($tag == null){
+                return $this->redirect(['site/404']);
+            }
+            $postsId = (new \yii\db\Query())
+                ->select(['id_post'])
+                ->from('post_to_tag')
+                ->where(['id_tag' => $tag->id])
+                ->orderBy(['id_post' => SORT_DESC])
+                ->all();
+
+            foreach($postsId as $id){
+                $post = Post::find()
+                ->where(['id' => $id['id_post']])
+                ->andWhere(['publish_status' => '1'])
+                ->andWhere(["<=",'publish_date',date('Y-m-d')])
+                ->one();
+                if($post != null){
+                    $posts[] = $post;
+                }
+            }
+
+            if($posts == null){
+                $message = 'Posting tidak ditemukan dalam tag '. $tag->nama;
+                $posts = [];
+            }
+
+            return $this->renderPartial('blog',[
+                'setting' => $this->setting,
+                'profile' => $this->profile,
+                'posts' => $posts,
+                'pagination' => $pagination,
+                'tags' => $tags,
+                'message' => $message
+            ]);
+        }
 
         $query = Post::find()
             ->where(['publish_status' => '1'])
             ->andWhere(["<=",'publish_date',date('Y-m-d')])
-            ->orderBy(['id' => SORT_DESC,]);
+            ->orderBy(['id' => SORT_DESC]);
 
         if($q != null){
             $query = Post::find()
             ->where(['publish_status' => '1'])
             ->andWhere(["<=",'publish_date',date('Y-m-d')])
             ->andWhere(["LIKE",'judul', $q])
-            ->orderBy(['id' => SORT_DESC,]);
+            ->orderBy(['id' => SORT_DESC]);
             if($query->all() == null){
-                $message = 'Not Found';
+                $message = 'Posting tidak ditemukan';
             }
         }
 
