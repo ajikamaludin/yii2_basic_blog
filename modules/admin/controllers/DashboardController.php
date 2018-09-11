@@ -40,7 +40,20 @@ class DashboardController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $visit = (new \yii\db\Query())
+        ->select(['sum(visit) as visit'])
+        ->from('post')
+        ->one();
+
+        $post = (new \yii\db\Query())
+        ->select(['count(*) as post'])
+        ->from('post')
+        ->one();
+
+        return $this->render('index',[
+            'visit' => $visit['visit'],
+            'posts' => $post['post'],
+        ]);
     }
 
 }

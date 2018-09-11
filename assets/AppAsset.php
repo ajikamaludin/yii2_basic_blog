@@ -41,6 +41,8 @@ class AppAsset extends AssetBundle
         //'backend/bower_components/jquery-slimscroll/jquery.slimscroll.min.js',
         //'backend/bower_components/chart.js/Chart.js',
         //'backend/dist/js/pages/dashboard2.js',
+        'backend/bower_components/Flot/jquery.flot.js',
+        'backend/bower_components/Flot/jquery.flot.categories.js',
         'backend/dist/js/demo.js',
     ];
     public $depends = [
