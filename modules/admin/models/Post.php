@@ -42,7 +42,7 @@ class Post extends ActiveRecord
     public function rules()
     {
         return [
-            [['judul', 'body', 'publish_status', 'publish_date','tag','gambar'], 'required'],
+            [['judul', 'publish_status', 'publish_date','tag','gambar'], 'required'],
             [['publish_status'], 'integer'],
             [['body'], 'string'],
             [['headerImage'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg', 'maxSize' => 1024*1024],
